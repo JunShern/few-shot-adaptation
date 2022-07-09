@@ -1,0 +1,4 @@
+numpy==1.22.1
+pandas==1.4.1
+spacy==3.2.2
+tqdm

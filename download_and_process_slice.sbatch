@@ -11,27 +11,21 @@
 ## This places the standard output and standard error into the same file, in this case slurm_<job_id>.out 
 #SBATCH --output=slurm_%A.out
 
-## First we ensure a clean environment by purging the current one
+## Load conda environment
 module purge
-
-## Load Anaconda
 module load anaconda3/2020.07
 source ~/.bashrc
-conda activate $HOME/.conda/envs/metaicl
-
-## Just log environment stats for diagnostics
-myquota
-nvidia-smi
-which python
-
-WDC_VERSION="v5"
+conda activate $HOME/.conda/envs/adaptable
 
 SLICE=$1
+BASE_DIR=$HOME/git/AdapTable/
+DOWNLOAD_DIR=$BASE_DIR/download
+OUT_DIR=$BASE_DIR/dataset
 
-cd $SCRATCH/MetaICL/data/wdc-$WDC_VERSION
+mkdir -p $DOWNLOAD_DIR && cd $DOWNLOAD_DIR
 wget http://data.dws.informatik.uni-mannheim.de/webtables/2015-07/englishCorpus/compressed/$SLICE.tar.gz
 tar -xvf $SLICE.tar.gz
 
-cd $HOME/git/MetaICL/wdc_setup
-python tables_to_tasks.py --tarfile /scratch/jc11431/MetaICL/data/wdc-tars/$SLICE.tar --outdir /scratch/jc11431/MetaICL/data/wdc-$WDC_VERSION/ --max_source_files 10000
-echo "EXPORT COMPLETE. Exported to /scratch/jc11431/MetaICL/data/wdc-$WDC_VERSION/$SLICE/"
+mkdir -p $OUT_DIR && cd $OUT_DIR
+python tables_to_tasks.py --tarfile $DOWNLOAD_DIR/$SLICE.tar --outdir $OUT_DIR --max_source_files 10000
+echo "EXPORT COMPLETE. Exported to $OUT_DIR/$SLICE/"
