@@ -36,8 +36,14 @@ python tables_to_tasks.py --tarfile $SLICE.tar --outdir ./adaptable/ --max_sourc
 
 For convenience, we provide sbatch scripts for performing the the above steps in a parallelized manner on a SLURM system. To download and extract all 51 slices via 51 parallel batch jobs, simply run `bash download_and_process_all.sh`. (Caution: Will generate ~150GB and ~500k files)
 
-## Data subsets
+# Reproducibility
+Our main experiment setting uses [MetaICL](https://github.com/facebookresearch/MetaICL) for training and testing.
 
-#### Clustering
+## Model weights
+The model weights for our GPT2-large model fine-tuned on `AdapTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
 
-#### Single-website tables
+## Training
+Please follow the instructions on the [MetaICL](https://github.com/facebookresearch/MetaICL) repository for training.
+
+## Evaluation
+Please follow the instructions on the [MetaICL](https://github.com/facebookresearch/MetaICL) repository for test evaluation.
