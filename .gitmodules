@@ -1,0 +1,3 @@
+[submodule "MetaICL"]
+	path = MetaICL
+	url = git@github.com:JunShern/MetaICL.git
