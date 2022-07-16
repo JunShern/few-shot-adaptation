@@ -51,6 +51,7 @@ dataset = load_dataset('MicPie/adaptable_5k')
 ```
 
 We provide a demo of loading and inspecting tasks from the dataset at `adaptable_dataset_demo.ipynb`. Click the badge below to open the notebook and start exploring the dataset directly in Colab!
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JunShern/few-shot-adaptation/blob/master/adaptable_dataset_demo.ipynb)
 
 
