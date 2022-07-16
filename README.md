@@ -3,10 +3,15 @@ This repository contains code and resources for the paper "_Exploring Few-Shot A
 
 ![Tables-to-tasks](/img/tables_to_tasks.png)
 
+This repository contains submodules. To clone the full repository along with submodules (required for reproducing training/results), please use
+```
+git clone --recurse-submodules git@github.com:JunShern/few-shot-adaptation.git
+```
+
 ## AdapTable dataset
 
 ### Download
-Our datasets are available on the HuggingFace Hub. We provide the complete dataset `AdapTable-full` as well as the various sub-distributions discussed in our paper, for a total of 57 dataset options.
+Our datasets are available [on the HuggingFace Hub](https://huggingface.co/datasets/MicPie/adaptable_full). We provide the complete dataset `AdapTable-full` as well as the various sub-distributions discussed in our paper, for a total of 57 dataset options.
 
 To download a dataset, simply `pip install datasets` and download the dataset using `load_dataset`:
 ```python
@@ -50,7 +55,7 @@ distribution_names = [
 dataset = load_dataset('MicPie/adaptable_5k')
 ```
 
-We provide a demo of loading and inspecting tasks from the dataset at `adaptable_dataset_demo.ipynb`. Click the badge below to open the notebook and start exploring the dataset directly in Colab!
+We provide a demo of loading and inspecting tasks from the dataset at `adaptable_dataset_demo.ipynb`. Click the badge below to try it out with Colab!
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JunShern/few-shot-adaptation/blob/master/adaptable_dataset_demo.ipynb)
 
@@ -84,14 +89,44 @@ python tables_to_tasks.py --tarfile $SLICE.tar --outdir ./adaptable/ --max_sourc
 
 For convenience, we provide sbatch scripts for performing the the above steps in a parallelized manner on a SLURM system. To download and extract all 51 slices via 51 parallel batch jobs, simply run `bash download_and_process_all.sh`. (Caution: Will generate ~150GB and ~500k files)
 
-## Reproducibility
-Our main experiment setting uses [MetaICL](https://github.com/facebookresearch/MetaICL) for training and testing.
+## MetaICL training and evaluation
+This section provides instructions for reproducing our main results with [MetaICL](https://github.com/facebookresearch/MetaICL).
 
-### Model weights
-The model weights for our GPT2-large model fine-tuned on `AdapTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
+We provide a [modified fork](https://github.com/JunShern/MetaICL/tree/reproducibility) of the MetaICL repository as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to simplify working with our dataset. If `few-shot-adaptation/MetaICL` does not exist, you can run the following command from the root of this repository to get it:
+```bash
+git submodule update --init
+```
 
-### Training
-Please follow the instructions on the [MetaICL](https://github.com/facebookresearch/MetaICL) repository for training.
+To install the required dependencies, please follow the "Installation" section of `MetaICL/README.md`.
+
+### Model weights & Training
+The weights for our GPT2-large model fine-tuned on `AdapTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
+
+To train your own models, please follow the instructions in the "Training" section of `MetaICL/README.md`.
+
+For training on our task datasets, you can use the HuggingFace dataset path with the prefix "huggingface:" as the `$task`. For example, to train on `MicPie/adaptable_5k`, use
+```bash
+cd MetaICL/
+
+task="huggingface:MicPie/adaptable_5k"
+python train.py \
+  --task $task --k 16384 --test_k 16 --seed 100 --use_demonstrations --method channel \
+  --do_tensorize --n_gpu 8 --n_process 40
+python -m torch.distributed.launch --nproc_per_node=8 train.py \
+  --task $task --k 16384 --test_k 16 --seed 100 --train_seed 1 --use_demonstrations --method channel --n_gpu 8 \
+  --batch_size 1 --lr 1e-05 --fp16 --optimization 8bit-adam --out_dir checkpoints/channel-metaicl/$task
+```
 
 ### Evaluation
-Please follow the instructions on the [MetaICL](https://github.com/facebookresearch/MetaICL) repository for test evaluation.
+Given the trained model, you can use the `MetaICL/reproduce.sh` script to evaluate the test scores for each of the task settings:
+
+```bash
+cd MetaICL/
+
+MODEL_PATH="/PATH/TO/gpt2large-adaptable5k.pt"
+bash reproduce.sh hr_to_lr metaicl 100,13,21,42,87 32 $MODEL_PATH
+bash reproduce.sh class_to_class metaicl 100,13,21,42,87 32 $MODEL_PATH
+bash reproduce.sh qa_to_qa metaicl 100,13,21,42,87 32 $MODEL_PATH
+bash reproduce.sh non_nli_to_nli metaicl 100,13,21,42,87 32 $MODEL_PATH
+bash reproduce.sh non_paraphrase_to_paraphrase metaicl 100,13,21,42,87 32 $MODEL_PATH
+```
