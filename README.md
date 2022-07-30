@@ -8,10 +8,10 @@ This repository contains submodules. To clone the full repository along with sub
 git clone --recurse-submodules git@github.com:JunShern/few-shot-adaptation.git
 ```
 
-## AdapTable dataset
+## UnpredicTable dataset
 
 ### Download
-Our datasets are available [on the HuggingFace Hub](https://huggingface.co/datasets/MicPie/adaptable_full). We provide the complete dataset `AdapTable-full` as well as the various sub-distributions discussed in our paper, for a total of 57 dataset options.
+Our datasets are available [on the HuggingFace Hub](https://huggingface.co/datasets/MicPie/unpredictable_full). We provide the complete dataset `UnpredicTable-full` as well as the various sub-distributions discussed in our paper, for a total of 57 dataset options.
 
 To download a dataset, simply `pip install datasets` and download the dataset using `load_dataset`:
 ```python
@@ -19,55 +19,55 @@ from datasets import load_dataset
 
 distribution_names = [
     # Full dataset
-    "MicPie/adaptable_full",
+    "MicPie/unpredictable_full",
     # 5k random tasks from full dataset
-    "MicPie/adaptable_5k",
+    "MicPie/unpredictable_5k",
     # Filtered to 1 task per website
-    "MicPie/adaptable_unique",
+    "MicPie/unpredictable_unique",
     #  Single website tasks
-    "MicPie/adaptable_baseball.fantasysports.yahoo.com",
-    "MicPie/adaptable_bulbapedia.bulbagarden.net",
-    "MicPie/adaptable_cappex.com",
-    "MicPie/adaptable_cram.com",
-    "MicPie/adaptable_dividend.com",
-    "MicPie/adaptable_dummies.com",
-    "MicPie/adaptable_en.wikipedia.org",
-    "MicPie/adaptable_ensembl.org",
-    "MicPie/adaptable_gamefaqs.com",
-    "MicPie/adaptable_mgoblog.com",
-    "MicPie/adaptable_mmo-champion.com",
-    "MicPie/adaptable_msdn.microsoft.com",
-    "MicPie/adaptable_phonearena.com",
-    "MicPie/adaptable_sittercity.com",
-    "MicPie/adaptable_sporcle.com",
-    "MicPie/adaptable_studystack.com",
-    "MicPie/adaptable_support.google.com",
-    "MicPie/adaptable_w3.org",
-    "MicPie/adaptable_wiki.openmoko.org",
-    "MicPie/adaptable_wkdu.org",
+    "MicPie/unpredictable_baseball.fantasysports.yahoo.com",
+    "MicPie/unpredictable_bulbapedia.bulbagarden.net",
+    "MicPie/unpredictable_cappex.com",
+    "MicPie/unpredictable_cram.com",
+    "MicPie/unpredictable_dividend.com",
+    "MicPie/unpredictable_dummies.com",
+    "MicPie/unpredictable_en.wikipedia.org",
+    "MicPie/unpredictable_ensembl.org",
+    "MicPie/unpredictable_gamefaqs.com",
+    "MicPie/unpredictable_mgoblog.com",
+    "MicPie/unpredictable_mmo-champion.com",
+    "MicPie/unpredictable_msdn.microsoft.com",
+    "MicPie/unpredictable_phonearena.com",
+    "MicPie/unpredictable_sittercity.com",
+    "MicPie/unpredictable_sporcle.com",
+    "MicPie/unpredictable_studystack.com",
+    "MicPie/unpredictable_support.google.com",
+    "MicPie/unpredictable_w3.org",
+    "MicPie/unpredictable_wiki.openmoko.org",
+    "MicPie/unpredictable_wkdu.org",
     # Single cluster tasks
-    "MicPie/adaptable_cluster00", "MicPie/adaptable_cluster01", "MicPie/adaptable_cluster02", "MicPie/adaptable_cluster03", "MicPie/adaptable_cluster04", "MicPie/adaptable_cluster05", "MicPie/adaptable_cluster06", "MicPie/adaptable_cluster07", "MicPie/adaptable_cluster08", "MicPie/adaptable_cluster09", "MicPie/adaptable_cluster10", "MicPie/adaptable_cluster11", "MicPie/adaptable_cluster12", "MicPie/adaptable_cluster13", "MicPie/adaptable_cluster14", "MicPie/adaptable_cluster15", "MicPie/adaptable_cluster16", "MicPie/adaptable_cluster17", "MicPie/adaptable_cluster18", "MicPie/adaptable_cluster19", "MicPie/adaptable_cluster20", "MicPie/adaptable_cluster21", "MicPie/adaptable_cluster22", "MicPie/adaptable_cluster23", "MicPie/adaptable_cluster24", "MicPie/adaptable_cluster25", "MicPie/adaptable_cluster26", "MicPie/adaptable_cluster27", "MicPie/adaptable_cluster28", "MicPie/adaptable_cluster29", "MicPie/adaptable_cluster-noise", 
+    "MicPie/unpredictable_cluster00", "MicPie/unpredictable_cluster01", "MicPie/unpredictable_cluster02", "MicPie/unpredictable_cluster03", "MicPie/unpredictable_cluster04", "MicPie/unpredictable_cluster05", "MicPie/unpredictable_cluster06", "MicPie/unpredictable_cluster07", "MicPie/unpredictable_cluster08", "MicPie/unpredictable_cluster09", "MicPie/unpredictable_cluster10", "MicPie/unpredictable_cluster11", "MicPie/unpredictable_cluster12", "MicPie/unpredictable_cluster13", "MicPie/unpredictable_cluster14", "MicPie/unpredictable_cluster15", "MicPie/unpredictable_cluster16", "MicPie/unpredictable_cluster17", "MicPie/unpredictable_cluster18", "MicPie/unpredictable_cluster19", "MicPie/unpredictable_cluster20", "MicPie/unpredictable_cluster21", "MicPie/unpredictable_cluster22", "MicPie/unpredictable_cluster23", "MicPie/unpredictable_cluster24", "MicPie/unpredictable_cluster25", "MicPie/unpredictable_cluster26", "MicPie/unpredictable_cluster27", "MicPie/unpredictable_cluster28", "MicPie/unpredictable_cluster29", "MicPie/unpredictable_cluster-noise", 
     # Manual-rated tasks
-    "MicPie/adaptable_rated-low", "MicPie/adaptable_rated-medium", "MicPie/adaptable_rated-high",
+    "MicPie/unpredictable_rated-low", "MicPie/unpredictable_rated-medium", "MicPie/unpredictable_rated-high",
 ]
 
 # Get the 5k sample dataset
-dataset = load_dataset('MicPie/adaptable_5k')
+dataset = load_dataset('MicPie/unpredictable_5k')
 ```
 
-We provide a demo of loading and inspecting tasks from the dataset at `adaptable_dataset_demo.ipynb`. Click the badge below to try it out with Colab!
+We provide a demo of loading and inspecting tasks from the dataset at `dataset_demo.ipynb`. Click the badge below to try it out with Colab!
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JunShern/few-shot-adaptation/blob/master/adaptable_dataset_demo.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JunShern/few-shot-adaptation/blob/master/dataset_demo.ipynb)
 
 
 ### Recreate
 
-This section provides instructions for recreating the AdapTable dataset.
+This section provides instructions for recreating the UnpredicTable dataset.
 
 Install requirements:
 ```
-conda create -n adaptable python=3.8
-conda activate adaptable
+conda create -n unpredictable python=3.8
+conda activate unpredictable
 python -m pip install -r requirements.txt
 ```
 
@@ -84,7 +84,7 @@ wget http://data.dws.informatik.uni-mannheim.de/webtables/2015-07/englishCorpus/
 # Extract
 tar -xvf $SLICE.tar.gz
 # Convert
-python tables_to_tasks.py --tarfile $SLICE.tar --outdir ./adaptable/ --max_source_files 10000
+python tables_to_tasks.py --tarfile $SLICE.tar --outdir ./unpredictable/ --max_source_files 10000
 ```
 
 For convenience, we provide sbatch scripts for performing the the above steps in a parallelized manner on a SLURM system. To download and extract all 51 slices via 51 parallel batch jobs, simply run `bash download_and_process_all.sh`. (Caution: Will generate ~150GB and ~500k files)
@@ -100,15 +100,15 @@ git submodule update --init
 To install the required dependencies, please follow the "Installation" section of `MetaICL/README.md`.
 
 ### Model weights & Training
-The weights for our GPT2-large model fine-tuned on `AdapTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
+The weights for our GPT2-large model fine-tuned on `UnpredicTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
 
 To train your own models, please follow the instructions in the "Training" section of `MetaICL/README.md`.
 
-For training on our task datasets, you can use the HuggingFace dataset path with the prefix "huggingface:" as the `$task`. For example, to train on `MicPie/adaptable_5k`, use
+For training on our task datasets, you can use the HuggingFace dataset path with the prefix "huggingface:" as the `$task`. For example, to train on `MicPie/unpredictable_5k`, use
 ```bash
 cd MetaICL/
 
-task="huggingface:MicPie/adaptable_5k"
+task="huggingface:MicPie/unpredictable_5k"
 python train.py \
   --task $task --k 16384 --test_k 16 --seed 100 --use_demonstrations --method channel \
   --do_tensorize --n_gpu 8 --n_process 40
@@ -123,7 +123,7 @@ Given the trained model, you can use the `MetaICL/reproduce.sh` script to evalua
 ```bash
 cd MetaICL/
 
-MODEL_PATH="/PATH/TO/gpt2large-adaptable5k.pt"
+MODEL_PATH="/PATH/TO/gpt2large-unpredictable5k.pt"
 bash reproduce.sh hr_to_lr metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh class_to_class metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh qa_to_qa metaicl 100,13,21,42,87 32 $MODEL_PATH
