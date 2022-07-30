@@ -1,5 +1,5 @@
 # few-shot-adaptation
-This repository contains code and resources for the paper "_Exploring Few-Shot Adaptation of Language Models with Tables_" by Jun Shern Chan, Michael Pieler, Jonathan Jao, Jérémy Scheurer and Ethan Perez.
+This repository contains code and resources for the paper "_Few-shot Adaptation Works with UnpredicTable Data_" by Jun Shern Chan, Michael Pieler, Jonathan Jao, Jérémy Scheurer and Ethan Perez.
 
 ![Tables-to-tasks](/img/tables_to_tasks.png)
 
