@@ -130,3 +130,13 @@ bash reproduce.sh qa_to_qa metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh non_nli_to_nli metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh non_paraphrase_to_paraphrase metaicl 100,13,21,42,87 32 $MODEL_PATH
 ```
+
+## Citation
+```
+@article{chan2022few,
+  author = {Jun Shern Chan and Michael Pieler and Jonathan Jao and Jérémy Scheurer and Ethan Perez},
+  title = {Few-shot Adaptation Works with UnpredicTable Data},
+  publisher={arXiv},
+  year = {2022}
+}
+```
