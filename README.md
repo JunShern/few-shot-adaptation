@@ -1,5 +1,5 @@
 # few-shot-adaptation
-This repository contains code and resources for the paper "_Few-shot Adaptation Works with UnpredicTable Data_" by Jun Shern Chan, Michael Pieler, Jonathan Jao, Jérémy Scheurer and Ethan Perez.
+This repository contains code and resources for the paper [_Few-shot Adaptation Works with UnpredicTable Data_](https://arxiv.org/abs/2208.01009) by Jun Shern Chan, Michael Pieler, Jonathan Jao, Jérémy Scheurer and Ethan Perez.
 
 ![Tables-to-tasks](/img/tables_to_tasks.png)
 
@@ -100,7 +100,9 @@ git submodule update --init
 To install the required dependencies, please follow the "Installation" section of `MetaICL/README.md`.
 
 ### Model weights & Training
-The weights for our GPT2-large model fine-tuned on `UnpredicTable-5k` can be downloaded [here](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing).
+The weights for our fine-tuned GPT2-large model can be downloaded below:
+- Fine-tuned on `UnpredicTable-5k` - [weights](https://drive.google.com/file/d/1Q1mh9rKxD6MX0lTD_okWEjINWRNfqhXY/view?usp=sharing)
+- Fine-tuned on `support.google.com` - [weights](https://drive.google.com/file/d/1AM_3tXJjAixrJ3R5q3chSnFuW3Uk_6YR/view?usp=sharing)
 
 To train your own models, please follow the instructions in the "Training" section of `MetaICL/README.md`.
 
@@ -133,10 +135,11 @@ bash reproduce.sh non_paraphrase_to_paraphrase metaicl 100,13,21,42,87 32 $MODEL
 
 ## Citation
 ```
-@article{chan2022few,
-  author = {Jun Shern Chan and Michael Pieler and Jonathan Jao and Jérémy Scheurer and Ethan Perez},
+@misc{chan2022few,
+  author = {Chan, Jun Shern and Pieler, Michael and Jao, Jonathan and Scheurer, Jérémy and Perez, Ethan},
   title = {Few-shot Adaptation Works with UnpredicTable Data},
   publisher={arXiv},
-  year = {2022}
+  year = {2022},
+  url = {https://arxiv.org/abs/2208.01009}
 }
 ```
