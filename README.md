@@ -1,5 +1,5 @@
 # few-shot-adaptation
-This repository contains code and resources for the paper [_Few-shot Adaptation Works with UnpredicTable Data_](https://arxiv.org/abs/2208.01009) by Jun Shern Chan, Michael Pieler, Jonathan Jao, Jérémy Scheurer and Ethan Perez.
+This repository contains code and resources for the paper _Few-shot Adaptation Works with UnpredicTable Data_, currently under review.
 
 ![Tables-to-tasks](/img/tables_to_tasks.png)
 
@@ -131,15 +131,4 @@ bash reproduce.sh class_to_class metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh qa_to_qa metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh non_nli_to_nli metaicl 100,13,21,42,87 32 $MODEL_PATH
 bash reproduce.sh non_paraphrase_to_paraphrase metaicl 100,13,21,42,87 32 $MODEL_PATH
-```
-
-## Citation
-```
-@misc{chan2022few,
-  author = {Chan, Jun Shern and Pieler, Michael and Jao, Jonathan and Scheurer, Jérémy and Perez, Ethan},
-  title = {Few-shot Adaptation Works with UnpredicTable Data},
-  publisher={arXiv},
-  year = {2022},
-  url = {https://arxiv.org/abs/2208.01009}
-}
 ```
