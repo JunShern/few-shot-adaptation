@@ -5,7 +5,7 @@ This repository contains code and resources for the paper _Few-shot Adaptation W
 
 This repository contains submodules. To clone the full repository along with submodules (required for reproducing training/results), please use
 ```
-git clone --recurse-submodules git@github.com:JunShern/few-shot-adaptation.git
+git clone --recurse-submodules git@github.com:Anon/few-shot-adaptation.git
 ```
 
 ## UnpredicTable dataset
@@ -92,7 +92,7 @@ For convenience, we provide sbatch scripts for performing the the above steps in
 ## MetaICL training and evaluation
 This section provides instructions for reproducing our main results with [MetaICL](https://github.com/facebookresearch/MetaICL).
 
-We provide a [modified fork](https://github.com/JunShern/MetaICL/tree/reproducibility) of the MetaICL repository as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to simplify working with our dataset. If `few-shot-adaptation/MetaICL` does not exist, you can run the following command from the root of this repository to get it:
+We use a [modified fork](https://github.com/Anon/MetaICL/tree/reproducibility) of the MetaICL repository as a [submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to simplify working with our dataset. If `few-shot-adaptation/MetaICL` does not exist, you can run the following command from the root of this repository to get it:
 ```bash
 git submodule update --init
 ```
